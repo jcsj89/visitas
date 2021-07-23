@@ -6,7 +6,7 @@ import RolVisitasController from '@modules/visitas/controllers/RolVisitasControl
 const rolVisitasController = new RolVisitasController();
 
 rolStatusRoutes.get('/', rolVisitasController.index);
-rolStatusRoutes.post('/show', rolVisitasController.show);
-rolStatusRoutes.post('/create', rolVisitasController.create);
+// rolStatusRoutes.post('/show', rolVisitasController.show);
+// rolStatusRoutes.post('/create', rolVisitasController.create);
 
 export default rolStatusRoutes;

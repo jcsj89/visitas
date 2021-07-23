@@ -1,50 +1,30 @@
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
-import VisitaRepository from '@modules/visitas/typeorm/repositories/VisitaRepository';
+import knex from '../../../database/connection';
+import { jsonObj, outputFile } from '../../importExcel/importExcel';
+import { v4 } from 'uuid';
 
 export default class RolVisitasController {
     public async index(
         request: Request,
         response: Response,
-    ): Promise<Response | undefined> {
-        const visitaRepository = getCustomRepository(VisitaRepository);
-        try {
-            const visitas = await visitaRepository.find();
-
-            return response.json(visitas);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    public async show(request: Request, response: Response): Promise<Response> {
-        const visitaRepository = getCustomRepository(VisitaRepository);
-
-        const visita = await visitaRepository.findByName('jose');
-
-        if (!visita) throw new Error('erro ao buscar visita');
-
-        return response.json(visita);
+    ): Promise<Response | void> {
+        return response.render('index', { teste: 'teste2' });
     }
 
     public async create(
         request: Request,
         response: Response,
-    ): Promise<Response | undefined> {
-        const visitaRepository = getCustomRepository(VisitaRepository);
+    ): Promise<Response | void> {
+        const visitors = await knex('visitors').select('*');
 
-        const { VIS_NOME, VIS_CPF } = request.body;
+        if (visitors.length < 1)
+            return response.json({ msg: 'Banco de dados vazio.' });
 
-        const visita = visitaRepository.create({
-            VIS_NOME,
-            VIS_CPF,
-        });
-        try {
-            await visitaRepository.save(visita);
+        const tipo: any[] = jsonObj(outputFile);
 
-            return response.json(visita);
-        } catch (e) {
-            console.log('create error controller');
+        for (let i = 0; i < tipo.length; i++) {
+            tipo[i]['id'] = v4();
         }
+        //await knex('visitors').insert(tipo);
     }
 }
