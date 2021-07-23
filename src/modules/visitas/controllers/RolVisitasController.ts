@@ -8,7 +8,12 @@ export default class RolVisitasController {
         request: Request,
         response: Response,
     ): Promise<Response | void> {
-        return response.render('index', { teste: 'teste2' });
+        console.log(request.session);
+        console.log(request.sessionID);
+
+        request.session.user = 'jose';
+
+        return response.render('index');
     }
 
     public async create(
