@@ -1,46 +1,24 @@
-import path = require('path');
-import fs from 'fs';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const xlsxj = require('xlsx-to-json-lc');
+import { promisify } from 'util';
 
-const inputFile = path.resolve(
-    __dirname,
-    '..',
-    '..',
-    'files',
-    'rol',
-    'SUSPENSO.xlsx',
-);
-const outputFile = path.resolve(
-    __dirname,
-    '..',
-    '..',
-    'files',
-    'output',
-    'output.json',
-);
+const excelTo = promisify(xlsxj);
 
-function excelToJson(inputFile: string, outputFile: string): any[] | void {
-    //convert excel to json
-    xlsxj(
-        {
-            input: inputFile,
-            output: outputFile,
-            lowerCaseHeaders: true, //converts excel header rows into lowercase as json keys
-        },
-        function (err: any, result: any) {
-            if (err) {
-                console.error(err);
-            } else {
-                return result;
-            }
-        },
-    );
+async function assyncToJson(
+    inputFile: string,
+    outputFile: string,
+): Promise<any[] | void> {
+    await excelTo({
+        input: inputFile,
+        output: outputFile,
+        //lowerCaseHeaders: true, //converts excel header rows into lowercase as json keys
+    })
+        .then(function (result: any) {
+            //console.error(result);
+        })
+        .catch(function (err: any) {
+            console.error(err);
+        });
 }
 
-function jsonObj(outputFile: string): any[] {
-    //read json file
-    const jsonObj = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
-    return jsonObj;
-}
-export { jsonObj, excelToJson, outputFile, inputFile };
+export { assyncToJson };

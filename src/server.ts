@@ -2,6 +2,7 @@ import express from 'express';
 import { resolve } from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
+import { flash } from 'express-flash-message';
 import cors from 'cors';
 import session from 'express-session';
 import routes from './routes'; // manager routes
@@ -10,18 +11,19 @@ const app = express();
 import sqliteStoreFactory from 'express-session-sqlite';
 import sqlite3 from 'sqlite3';
 ////////////////////////////////////////////////////////
-app.use(cors());
 
 //view engine
 app.set('view engine', 'ejs');
 app.set('views', resolve(__dirname, 'views'));
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
-express.urlencoded({ extended: false });
+app.use(express.urlencoded({ extended: false }));
 
 const SqliteStore = sqliteStoreFactory(session);
-
+//secret session
+const secret = process.env.SESSION_SECRET || 'ASD6XCV8FGH5QE3DFG7GHJ5SDF9';
 app.use(
     session({
         store: new SqliteStore({
@@ -37,7 +39,7 @@ app.use(
             // Default is 5 minutes.
             cleanupInterval: 600000,
         }),
-        secret: 'lasjkdkasjdjklasdjkl',
+        secret: secret,
         resave: false,
         saveUninitialized: true,
         cookie: {
@@ -46,6 +48,9 @@ app.use(
         //... don't forget other expres-session options you might need
     }),
 );
+
+// apply express-flash-message middleware
+app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 // routes
 app.use(routes);

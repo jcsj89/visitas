@@ -1,0 +1,26 @@
+<%- include('../base/head'); %>
+    <!--HEAD/LINKS-->
+    <%- include('../base/header'); %>
+        <!--HEADER-->
+        <div class="container">
+            <div class="row">
+                <div class="col-3 border">
+                    <%- include('admmenu'); %>
+                        <!--SIDEBAR LEFT-->
+                </div>
+                <div class="col-9 border">
+                    <!--CONTENT-->
+                    <h1>ADMIN PAGE</h1>
+                    <!--  SINGLE FILE -->
+                    <form action="/user/admin/upload" enctype="multipart/form-data" method="POST">
+                        <input type="file" name="file" />
+                        <input type="submit" value="Upload a file" />
+                    </form>
+                    <!--END CONTENT-->
+                    <a href="/user/logout">logout</a>
+                </div>
+
+            </div>
+        </div>
+        <%- include('../base/footer'); %>
+            <!--FOOTER-->

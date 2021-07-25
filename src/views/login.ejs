@@ -1,0 +1,37 @@
+<%- include('base/head'); %>
+    <!--HEAD/LINKS-->
+    <%- include('base/header'); %>
+        <!--HEADER-->
+        <div class="container">
+            <div class="row align-items-center justify-content-center ">
+
+                <div class="col-10 col-sm-6 col-md-4 border m-5 p-2">
+                    <h3>Login</h3>
+                    <form action="/user/login" method="POST">
+                        <div class="mb-3">
+                            <label for="InputEmail1" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputPassword1" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="InputPassword1">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+
+                <% if ( typeof messages !== 'undefined' ) { %>
+
+                    <div class="alert alert-warning" role="alert">
+                        <%= messages %>
+                    </div>
+
+                <% } %>
+
+            </div>
+        </div>
+        <%- include('base/footer'); %>
+        <!--FOOTER-->
