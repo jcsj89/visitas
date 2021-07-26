@@ -1,14 +1,20 @@
-<%- include('../base/head'); %>
-    <!--HEAD/LINKS-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../base/head'); %>
+</head>
+
+<body>
     <%- include('../base/header'); %>
-        <!--HEADER-->
         <div class="container">
-            <div class="row">
-                <div class="col-3 border">
-                    <%- include('admmenu'); %>
-                        <!--SIDEBAR LEFT-->
+            <div class="row mb-5 mt-2">
+                
+                <div class="col col-sm-auto ">
+                    <%- include('admmenu') %>
                 </div>
-                <div class="col-9 border">
+
+                <div class="col border">
                     <!--CONTENT-->
                     <h1>ADMIN PAGE</h1>
                     <!--  SINGLE FILE -->
@@ -16,11 +22,15 @@
                         <input type="file" name="file" />
                         <input type="submit" value="Upload a file" />
                     </form>
-                    <!--END CONTENT-->
-                    <a href="/user/logout">logout</a>
                 </div>
-
             </div>
+
+            <!--END CONTENT-->
+            <a href="/user/logout">logout</a>
         </div>
+
         <%- include('../base/footer'); %>
             <!--FOOTER-->
+</body>
+
+</html>

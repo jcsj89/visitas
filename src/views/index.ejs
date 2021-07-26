@@ -1,14 +1,45 @@
-<%- include('base/head'); %> <!--HEAD/LINKS-->
-    <%- include('base/header'); %> <!--HEADER-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('base/head') %>
+</head>
+
+<body>
+    <%- include('base/header') %>
         <div class="container">
-            <div class="row">
-                <div class="col-3 border">
-                    <%- include('base/menu'); %> <!--SIDEBAR LEFT-->
+            <div class="row mb-5">
+                <div class="col-auto  mt-2">
+                    <%- include('base/menu') %>
                 </div>
-                <div class="col-9 border"> <!--CONTENT-->
-                    <h1>CONTENT HERE</h1>
-                    <H3>Consulta Status com CPF</H3>
-                </div> <!--END CONTENT-->
+
+                <div class="col mt-2 ">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col text-center">
+                            <h5>Consultar status da carteirinha.
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-auto p-1">
+                            <label for="inputPassword6" class="col-form-label">Informe seu CPF</label>
+                        </div>
+                        <div class="col-auto p-1">
+                            <input type="number" id="inputPassword6" class="form-control"
+                                aria-describedby="passwordHelpInline">
+                        </div>
+                        <div class="col-auto p-1">
+                            <button class="btn btn-info" type="button">Consultar</button>
+                        </div>
+                    </div>
+
+                    <%- include('consulta') %>
+
+                </div>
             </div>
+
         </div>
-<%- include('base/footer'); %> <!--FOOTER-->
+        <%- include('base/footer') %>
+</body>
+
+</html>

@@ -4,7 +4,6 @@ import knex from '../../../database/connection';
 import bcrypt from 'bcrypt';
 import { assyncToJson } from '../../importExcel/importExcel';
 import { v4 } from 'uuid';
-import { promisify } from 'util';
 import fs from 'fs';
 
 interface IUser {
@@ -146,32 +145,51 @@ export default class UserController {
         response: Response,
     ): Promise<Response | void> {
         const inputPath = request.file?.path || '';
+        const outputPath = 'uploads/upload.json';
+        const changes: IChanges = { update: 0, save: 0, del: 0 };
 
-        await assyncToJson(inputPath, 'uploads/upload.json');
+        //transforma excel em json
+        await assyncToJson(inputPath, outputPath);
 
-        const readPath = await fs.promises.readFile(
-            'uploads/upload.json',
-            'utf8',
-        );
+        //faz a leitura do arquivo .json com os dados
+        const readPath = await fs.promises.readFile(outputPath, 'utf8');
 
+        //transforma em um array de objetos (json) os dados
         const visitorJson = JSON.parse(readPath);
 
-        let cont = 0;
-
+        /**
+         * Itera no array para verificar se deve atualizar
+         * ou salvar os dados. Regras lógica abaixo:
+         * - DET_MATRICULA é um campo que nunca está em branco, não precisa verificar
+         * - Checa se tem cpf (VIS_CPF) cadastrado e localizacao, caso tenha,
+         *   procura no banco pela matricula e cpf, se encontrar atualiza, senão
+         *  insere novo visitor no banco.
+         */
         for (let i = 0; i < visitorJson.length; i++) {
+            //limpa o banco com localizacao em branco
+            if (!visitorJson[i]['LOCALIZACAO']) {
+                await knex('visitors')
+                    .where({
+                        DET_MATRICULA: visitorJson[i].DET_MATRICULA,
+                    })
+                    .del();
+                changes.del++;
+            }
+
+            //atualiza ou salva
             if (visitorJson[i]['VIS_CPF'] && visitorJson[i]['LOCALIZACAO']) {
-                await saveOrUpdate(visitorJson[i]);
-                cont++;
+                await saveOrUpdate(visitorJson[i], changes);
             }
         }
-        console.log(cont);
+        console.log(changes);
 
-        console.log('ofim');
-        return response.json('result');
+        //deleta todos arquivos da pasta uploads apos o uso
+        delFiles();
+        return response.json(changes);
     }
 }
 
-async function saveOrUpdate(visitor: IVisitor) {
+async function saveOrUpdate(visitor: IVisitor, changes: IChanges) {
     const hasVisitor = await knex('visitors')
         .where({
             VIS_CPF: visitor.VIS_CPF,
@@ -190,15 +208,40 @@ async function saveOrUpdate(visitor: IVisitor) {
                 LOCALIZACAO: visitor.LOCALIZACAO,
                 DVI_STATUS: visitor.DVI_STATUS,
                 VIS_BLOQUEADO: visitor.VIS_BLOQUEADO,
+                VIS_PARLATORIO: visitor.VIS_PARLATORIO,
+                VIS_RG: visitor.VIS_RG,
+                VIS_VENCIMENTO: visitor.VIS_VENCIMENTO,
+                VIS_ENDERECO_VENC: visitor.VIS_ENDERECO_VENC,
+                VIS_DATAALTERACAO: visitor.VIS_DATAALTERACAO,
+                VIS_OBS: visitor.VIS_OBS,
+                IDADE: visitor.IDADE,
             });
+        changes.update++;
     }
 
     if (hasVisitor.length < 1) {
         visitor['id'] = v4();
         await knex('visitors').insert(visitor);
+        changes.save++;
     }
 }
 
+function delFiles() {
+    const files = fs.readdirSync('uploads/');
+
+    for (const key of files) {
+        if (fs.statSync('uploads/' + key)) {
+            console.log('deletado:', key);
+            fs.unlinkSync('uploads/' + key);
+        }
+    }
+}
+
+interface IChanges {
+    update: number;
+    save: number;
+    del: number;
+}
 interface IVisitor {
     id: string;
     DET_NOME: string;

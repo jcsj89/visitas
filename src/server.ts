@@ -1,5 +1,6 @@
 import express from 'express';
 import { resolve } from 'path';
+import helmet from 'helmet';
 import dotenv from 'dotenv';
 dotenv.config();
 import { flash } from 'express-flash-message';
@@ -16,6 +17,7 @@ import sqlite3 from 'sqlite3';
 app.set('view engine', 'ejs');
 app.set('views', resolve(__dirname, 'views'));
 
+//app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));

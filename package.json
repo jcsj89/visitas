@@ -9,7 +9,7 @@
     "lint-fix": "eslint . --ext .ts --fix",
     "prod": "npm run build && npm run knex:prod && npm run copy && node -r tsconfig-paths/register dist/server.js",
     "build": "npx tsc",
-    "copy": "cp -r src/views dist/views",
+    "copy": "cp -r src/views dist/",
     "knex:migrate": "npx knex --knexfile src/config/knexfile.ts migrate:latest",
     "knex:prod": "npx knex --knexfile dist/config/knexfile.ts migrate:latest",
     "knex:seeds": "knex --knexfile knexfile.ts seed:run"
@@ -26,6 +26,7 @@
     "express-flash-message": "^2.1.0",
     "express-session": "^1.17.2",
     "express-session-sqlite": "^2.0.10",
+    "helmet": "^4.6.0",
     "knex": "^0.95.7",
     "multer": "^1.4.2",
     "sqlite3": "^5.0.2",
