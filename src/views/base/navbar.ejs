@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="/img/bandeira-do-estado-de-sao-paulo-2-300x200.png" class="float-start img-fluid" width="90"
+                alt="...">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <i class="align-middle material-icons-outlined text-dark">home</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Carteirinha
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Rol de Visitas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">
+                                <i class="align-middle material-icons-outlined text-warning">description</i>
+                                Documentação
+                            </a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">
+                                <i class="align-middle material-icons-outlined text-danger">today</i>
+                                Dias de Visita
+                            </a></li>
+                        <li><a class="dropdown-item" href="#">
+                                <i class="align-middle material-icons-outlined text-success">checkroom</i>
+                                Vestimenta
+                            </a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Orientações
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">
+                                <i class="align-middle material-icons-outlined text-success">list</i>
+                                Lista de Sedex
+                            </a></li>
+                        <li><a class="dropdown-item" href="#">
+                                <i class="align-middle material-icons-outlined text-warning">fact_check</i>
+                                Modelo de Documentos</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">
+                                <i class="align-middle material-icons-outlined text-danger">question_answer</i>
+                                Perguntas Frequentes</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <form action="/visitas/status" method="POST">
+        <div class="row pb-2">
+            <div class="col text-warning p-0 ps-sm-2 pe-sm-2 text-center text-sm-end pt-2">
+                <label class="col-form-label border rounded p-2" for="">CPF</label>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 p-0 pt-2">
+                <input class="form-control" name="cpf" type="number" placeholder="Informe o CPF." aria-label="Status">
+            </div>
+            <div class="col p-0 ps-2 pe-2 text-end text-sm-start pt-2 text-center-310">
+                <button class="me-0 btn btn-outline-success" type="submit">Consultar</button>
+            </div>
+        </div>
+    </form>
+    <div class="row justify-content-center">
+        <div class="col">
+            <% if (locals.messages) { %>
+                <h6 class="text-center">
+                    <span class="text-center badge bg-warning"><%= messages %></span>
+                </h6>
+                <% } %>
+        </div>
+    </div>
+
+</div>

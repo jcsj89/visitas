@@ -17,52 +17,50 @@ a:hover {
 ul {
     list-style: none;
     overflow: inherit;
-    padding: 0;
+    padding-left: 0;
 }
 
 ul li {
     line-height: 1.6;
-    padding: 1.4px;
+    font-size: 0.9em;
+    margin-bottom: 1.5px;
 }
 
 #menu a {
-    color: black;
+    color: #838487;
     text-decoration: none;
     font-family: 'Open Sans';
+    margin-right: 5px;
 }
 
 #menu a:hover {
-    color: rgb(18, 129, 202);
-    transition: all 0.5s ease-in;
+    color: rgb(0, 0, 0) !important;
+    transition: all 0.1s ease-in;
     transition-delay: 0.1s;
-    text-decoration: underline;
+    font-weight: 400;
 }
+#menu li:hover i {
+    color: #ccc !important;
+    transition: all 0.1s ease-in;
+    transition-delay: 0.1s;
+}
+
+
+
 
 .text-color1 {
     color: #41b3a3 !important;
 }
 .text-color2 {
-    color: #E27D60 !important;
+    color: #e27d60 !important;
 }
 .text-color3 {
     color: #c38d9e !important;
 }
 
-@media (min-width: 100.98px) and (max-width: 575.98px) {
+@media (min-width: 311px) and (max-width: 768px) {
     body {
         font-size: 0.9em;
-    }
-    #menu {
-        color: black;
-        text-decoration: none;
-        font-family: 'Open Sans';
-        padding: 0;
-        font-size: 0.7em;
-    }
-    #menu i{
-        color: black;
-        padding: 1px;
-        font-size: 1.1em;
     }
     nav h2 {
         font-size: inherit;
@@ -71,3 +69,20 @@ ul li {
         width: 50px;
     }
 }
+
+@media (min-width: 0px) and (max-width: 310px) {
+    body {
+        font-size: inherit;
+    }
+    nav h2 {
+        font-size: inherit;
+    }
+    nav img {
+        width: 40px;
+    }
+
+    .text-center-310 {
+        text-align: center !important;
+    }
+}
+
