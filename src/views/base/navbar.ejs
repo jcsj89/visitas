@@ -72,7 +72,13 @@
         </div>
     </div>
 </nav>
-
+<% if (!locals.visitor) { %>
+    <div class="row justify-content-center align-items-center m-0 p-0">
+        <div class="col text-center m-0 p-0">
+            <span class="font-size-07">Informe o CPF do visitante sem pontos e hifén.</span>
+        </div>
+    </div>
+    <% } %>
 <div class="container-fluid">
     <form action="/visitas/status" method="POST">
         <div class="row pb-2">

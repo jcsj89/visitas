@@ -15,8 +15,9 @@ export const upload = multer({
     fileFilter: (req, file, cb) => {
         try {
             if (
+                file &&
                 file.mimetype ===
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             ) {
                 cb(null, true);
             } else {

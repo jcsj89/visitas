@@ -84,5 +84,9 @@ ul li {
     .text-center-310 {
         text-align: center !important;
     }
+
+    .font-size-07 {
+        font-size: 0.7em;
+    }
 }
 
