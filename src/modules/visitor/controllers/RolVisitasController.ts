@@ -8,10 +8,25 @@ export default class RolVisitasController {
         request: Request,
         response: Response,
     ): Promise<Response | void> {
+        //pages names
+        const valepostal = 'valepostal';
+        const advogado = 'advogado';
+        const oficial = 'oficial';
+
         console.log(request.session);
         console.log(request.sessionID);
+
+        console.log(request.originalUrl);
         request.session.authType = undefined;
         request.session.user = undefined;
+
+        //render url based
+        if (request.originalUrl === '/valepostal')
+            return response.render('index', { valepostal });
+        if (request.originalUrl === '/advogado')
+            return response.render('index', { advogado });
+        if (request.originalUrl === '/oficial')
+            return response.render('index', { oficial });
 
         return response.render('index');
     }

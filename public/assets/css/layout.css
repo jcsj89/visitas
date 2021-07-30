@@ -72,7 +72,7 @@ ul li {
 
 @media (min-width: 0px) and (max-width: 310px) {
     body {
-        font-size: inherit;
+        font-size: 0.9em;
     }
     nav h2 {
         font-size: inherit;
@@ -80,7 +80,9 @@ ul li {
     nav img {
         width: 40px;
     }
-
+    p {
+        font-size: 0.9em;
+    }
     .text-center-310 {
         text-align: center !important;
     }
