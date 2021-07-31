@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import knex from '../../../database/connection';
-import { stringify, v4 } from 'uuid';
-import { copyFile } from 'fs';
 
 export default class RolVisitasController {
     public async index(
@@ -12,6 +10,8 @@ export default class RolVisitasController {
         const valepostal = 'valepostal';
         const advogado = 'advogado';
         const oficial = 'oficial';
+        const vestuario = 'vestuario';
+        const sedex = 'sedex';
 
         console.log(request.session);
         console.log(request.sessionID);
@@ -27,6 +27,10 @@ export default class RolVisitasController {
             return response.render('index', { advogado });
         if (request.originalUrl === '/oficial')
             return response.render('index', { oficial });
+        if (request.originalUrl === '/vestuario')
+            return response.render('index', { vestuario });
+        if (request.originalUrl === '/sedex')
+            return response.render('index', { sedex });
 
         return response.render('index');
     }

@@ -27,6 +27,15 @@
         <%- include('pages/oficial'); %>
     <% } %>
 
+    <% if (locals.vestuario) { %>
+        <%- include('pages/vestuario'); %>
+    <% } %>
+
+    <% if (locals.sedex) { %>
+        <%- include('pages/sedex'); %>
+    <% } %>
+
+
     <%- include('pages/roldevisitas');%>
 
 </div>
