@@ -34,7 +34,7 @@ app.use(
             driver: sqlite3.Database,
             // for in-memory database
             // path: ':memory:'
-            path: './src/database/session.sqlite',
+            path: './dist/database/session.sqlite',
             // Session TTL in milliseconds
             ttl: 600000,
             // (optional) Adjusts the cleanup timer in milliseconds for deleting expired session rows.
@@ -57,7 +57,6 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 // routes
 app.use(routes);
 
-app.listen(3333, () => {
-    console.log('Server stared on port 3333!');
-    console.log('http://localhost:3333 ');
+app.listen(21143, () => {
+    console.log('Server stared on port 21143!');
 });
