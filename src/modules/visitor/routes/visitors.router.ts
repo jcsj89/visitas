@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const rolStatusRoutes = Router();
-import RolVisitasController from '@modules/visitor/controllers/RolVisitasController';
+import RolVisitasController from '../controllers/RolVisitasController';
 
 const rolVisitasController = new RolVisitasController();
 

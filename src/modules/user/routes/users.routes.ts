@@ -1,13 +1,13 @@
 import { Router } from 'express';
 const usersRoutes = Router();
 import UserController from '../controllers/UserController'; //import UserController
-import { upload } from '@src/config/multer';
+import { upload } from '../../../config/multer';
 
 //instance controller
 const userControler = new UserController();
 
 //middleware user authenticated
-import { authenticated } from '@src/middlewares/authenticated';
+import { authenticated } from '../../../middlewares/authenticated';
 
 usersRoutes.get('/', userControler.index); // render login page
 usersRoutes.post('/login', userControler.login); //faz login com email/pass
