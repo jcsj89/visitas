@@ -1,5 +1,5 @@
 import express from 'express';
-import { resolve } from 'path';
+import path from 'path';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -15,12 +15,12 @@ import sqlite3 from 'sqlite3';
 
 //view engine
 app.set('view engine', 'ejs');
-app.set('views', resolve(__dirname, 'views'));
+app.set('views', path.resolve(__dirname, 'views'));
 
 //app.use(helmet());
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.urlencoded({ extended: false }));
 
 const SqliteStore = sqliteStoreFactory(session);
@@ -34,7 +34,7 @@ app.use(
             driver: sqlite3.Database,
             // for in-memory database
             // path: ':memory:'
-            path: './dist/database/session.sqlite',
+            path: './src/database/session.sqlite',
             // Session TTL in milliseconds
             ttl: 600000,
             // (optional) Adjusts the cleanup timer in milliseconds for deleting expired session rows.
@@ -57,6 +57,6 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 // routes
 app.use(routes);
 
-app.listen(21143, () => {
-    console.log('Server stared on port 21143!');
+app.listen(process.env.PORT || 3000, () => {
+    console.log('Server started up!');
 });
