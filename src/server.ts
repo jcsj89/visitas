@@ -58,5 +58,5 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.use(routes);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Server started up!');
+    console.log('Server start up!');
 });
