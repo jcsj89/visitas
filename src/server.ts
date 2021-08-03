@@ -16,7 +16,7 @@ import sqlite3 from 'sqlite3';
 //view engine
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'views'));
-
+console.dir(path.resolve(__dirname, 'views'));
 //app.use(helmet());
 app.use(cors());
 app.use(express.json());

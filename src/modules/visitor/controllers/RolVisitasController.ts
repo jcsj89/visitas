@@ -16,7 +16,7 @@ export default class RolVisitasController {
         console.log(request.session);
         console.log(request.sessionID);
 
-        console.log(request.originalUrl);
+        console.log(__dirname);
         request.session.authType = undefined;
         request.session.user = undefined;
 
