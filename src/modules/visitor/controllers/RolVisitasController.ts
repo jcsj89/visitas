@@ -22,17 +22,17 @@ export default class RolVisitasController {
 
         //render url based
         if (request.originalUrl === '/valepostal')
-            return response.render('index', { valepostal });
+            return response.render('index.ejs', { valepostal });
         if (request.originalUrl === '/advogado')
-            return response.render('index', { advogado });
+            return response.render('index.ejs', { advogado });
         if (request.originalUrl === '/oficial')
-            return response.render('index', { oficial });
+            return response.render('index.ejs', { oficial });
         if (request.originalUrl === '/vestuario')
-            return response.render('index', { vestuario });
+            return response.render('index.ejs', { vestuario });
         if (request.originalUrl === '/sedex')
-            return response.render('index', { sedex });
+            return response.render('index.ejs', { sedex });
 
-        return response.render('index');
+        return response.render('index.ejs');
     }
 
     public async create(
