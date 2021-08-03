@@ -148,8 +148,6 @@ export default class UserController {
         const outputPath = 'uploads/upload.json';
         const changes: IChanges = { update: 0, save: 0, del: 0 };
 
-        console.log(inputPath);
-
         //transforma excel em json
         await assyncToJson(inputPath, outputPath);
 

@@ -3,12 +3,6 @@ import { resolve } from 'path';
 import pg from 'pg';
 import dotenv from 'dotenv';
 
-pg.defaults.ssl = process.env.NODE_ENV === 'development' ? false : true;
-pg.defaults.ssl = {
-    rejectUnauthorized: false,
-};
-
-console.log(pg.defaults.ssl);
 dotenv.config({
     path: resolve(__dirname, '..', '..', '.env'),
 });

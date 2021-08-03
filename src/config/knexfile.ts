@@ -6,13 +6,10 @@ dotenv.config({
 
 module.exports = {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
-    // connection: {
-    //     host: 'localhost',
-    //     user: 'postgres',
-    //     password: 'docker',
-    //     database: 'taiuva',
-    // },
+    connection: {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+    },
     migrations: {
         directory: resolve(__dirname, '..', 'database', 'migrations'),
     },
