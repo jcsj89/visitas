@@ -12,7 +12,7 @@
     "build": "npx tsc",
     "copy": "cp -r src/views dist/",
     "knex:migrate": "npx knex --knexfile src/config/knexfile.ts migrate:latest",
-    "knex:prod": "npx knex --knexfile dist/config/knexfile.ts migrate:latest",
+    "knex:prod": "npx knex --knexfile dist/config/knexfile.js migrate:latest",
     "knex:seeds": "knex --knexfile knexfile.ts seed:run"
   },
   "keywords": [],
