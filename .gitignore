@@ -8,6 +8,3 @@ temp/
 coverage
 dist/
 package-lock.json
-
-uploads/*
-!uploads/.gitkeep
