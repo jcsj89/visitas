@@ -5,13 +5,29 @@ dotenv.config({
 });
 
 module.exports = {
-    client: 'pg',
-    connection: {
-        connectionString: process.env.DATABASE_URL,
-        ssl: { rejectUnauthorized: false },
+    development: {
+        client: 'pg',
+        connection: {
+            connectionString: process.env.DATABASE_URL,
+        },
+        migrations: {
+            directory: resolve(__dirname, '..', 'database', 'migrations'),
+        },
+        useNullAsDefault: true,
     },
-    migrations: {
-        directory: resolve(__dirname, '..', 'database', 'migrations'),
+    production: {
+        client: 'pg',
+        connection: {
+            connectionString: process.env.DATABASE_URL,
+            ssl: { rejectUnauthorized: false },
+        },
+        migrations: {
+            directory: resolve(__dirname, '..', 'database', 'migrations'),
+        },
+        useNullAsDefault: true,
+        pool: {
+            min: 2,
+            max: 10,
+        },
     },
-    useNullAsDefault: true,
 };
