@@ -145,12 +145,15 @@ export default class UserController {
         response: Response,
     ): Promise<Response | void> {
         const inputPath = request.file?.path || '';
+        console.log('controler', inputPath);
         const outputPath = 'uploads/upload.json';
+        console.log('controler', outputPath);
         const changes: IChanges = { update: 0, save: 0, del: 0 };
 
         //transforma excel em json
+        //you miss a input file
         await assyncToJson(inputPath, outputPath);
-
+        console.log('controler assynctojson');
         //faz a leitura do arquivo .json com os dados
         const readPath = await fs.promises.readFile(outputPath, 'utf8');
 
