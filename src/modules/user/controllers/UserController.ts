@@ -144,6 +144,7 @@ export default class UserController {
         request: Request,
         response: Response,
     ): Promise<Response | void> {
+        console.log('controler file:', request.file);
         const inputPath = request.file?.path || '';
         console.log('controler', inputPath);
         const outputPath = 'uploads/upload.json';
