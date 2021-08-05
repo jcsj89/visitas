@@ -19,7 +19,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'views'));
 
 if (environment !== 'development') {
-    app.use(helmet());
+    app.use(
+        helmet({
+            contentSecurityPolicy: false,
+        }),
+    );
 }
 
 app.use(cors());
