@@ -15,7 +15,7 @@
                         <i class="align-middle material-icons-outlined text-dark">home</i>
                     </a>
                 </li>
-               
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,23 +29,18 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">
+                        <li>
+                            <a class="dropdown-item" href="#">
                                 <i class="align-middle material-icons-outlined text-danger">today</i>
-                                Dias de Visita
-                            </a></li>
-                        <li><a class="dropdown-item" href="/vestuario">
+                                Visitação Presencial
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/vestuario">
                                 <i class="align-middle material-icons-outlined text-success">checkroom</i>
                                 Vestuário do Visitante
-                            </a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Orientações
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="/sedex">
                                 <i class="align-middle material-icons-outlined text-info">list</i>
@@ -58,6 +53,80 @@
                                 Vale Postal
                             </a>
                         </li>
+
+                        <li>
+                            <a class="dropdown-item" href="/advogado">
+                                <i class="align-middle material-icons-outlined text-primary">badge</i>
+                                Auxilio Reclusão
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/advogado">
+                                <i class="align-middle material-icons-outlined text-primary">badge</i>
+                                Uso de Máscara
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Advogados
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="/oficial">
+                                <i class="align-middle material-icons-outlined text-success">badge</i>
+                                Agendar Atendimentos
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/advogado">
+                                <i class="align-middle material-icons-outlined text-primary">badge</i>
+                                Atestado de Trabalho/Educação
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/advogado">
+                                <i class="align-middle material-icons-outlined text-primary">badge</i>
+                                Auxilio Reclusão
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/advogado">
+                                <i class="align-middle material-icons-outlined text-primary">badge</i>
+                                Atestado de Permanencia Carcerária
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/advogado">
+                                <i class="align-middle material-icons-outlined text-primary">badge</i>
+                                Uso de Máscara
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link " href="/oficial">
+                        Oficial de Justiça
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Orientações
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                         <li>
                             <a class="dropdown-item" href="#">
                                 <i class="align-middle material-icons-outlined text-warning">fact_check</i>
@@ -67,34 +136,14 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">
+                        <li>
+                            <a class="dropdown-item" target="_blank" href="http://www.sap.sp.gov.br/ouvidoria/ouvidoria-faq.html#top">
                                 <i class="align-middle material-icons-outlined text-danger">question_answer</i>
-                                Perguntas Frequentes</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Atendimentos
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="/oficial">
-                                <i class="align-middle material-icons-outlined text-success">badge</i>
-                                Oficial de Justiça
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/advogado">
-                                <i class="align-middle material-icons-outlined text-primary">badge</i>
-                                Advogado
+                                Perguntas Frequentes
                             </a>
                         </li>
                     </ul>
                 </li>
-
-
 
             </ul>
 
@@ -104,7 +153,7 @@
 <% if (!locals.visitor) { %>
     <div class="row justify-content-center align-items-center m-0 p-0">
         <div class="col text-center m-0 p-0">
-            <span class="font-size-07">Informe o CPF do visitante sem pontos e hifén.</span>
+            <span class="font-size-07 text-danger">Consultar Cadastro do Rol de Visitas.</span>
         </div>
     </div>
     <% } %>
@@ -115,7 +164,7 @@
                 <label class="col-form-label border rounded p-2" for="">CPF</label>
             </div>
             <div class="col-6 col-sm-4 col-md-3 p-0 pt-2">
-                <input class="form-control" name="cpf" type="number" placeholder="Informe o CPF." aria-label="Status">
+                <input class="form-control" name="cpf" type="number" placeholder="CPF sem pontos e hífen" aria-label="Status">
             </div>
             <div class="col p-0 ps-2 pe-2 text-end text-sm-start pt-2 text-center-310">
                 <button class="me-0 btn btn-outline-success" type="submit">Consultar</button>

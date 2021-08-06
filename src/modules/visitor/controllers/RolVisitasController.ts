@@ -7,30 +7,44 @@ export default class RolVisitasController {
         response: Response,
     ): Promise<Response | void> {
         //pages names
+        const home = '/';
         const valepostal = 'valepostal';
         const advogado = 'advogado';
         const oficial = 'oficial';
         const vestuario = 'vestuario';
         const sedex = 'sedex';
 
+        //delete after
         console.log(request.session);
         console.log(request.sessionID);
+        console.log(request.originalUrl);
 
-        console.log(__dirname);
         request.session.authType = undefined;
         request.session.user = undefined;
 
-        //render url based
-        if (request.originalUrl === '/valepostal')
-            return response.render('index.ejs', { valepostal });
-        if (request.originalUrl === '/advogado')
-            return response.render('index.ejs', { advogado });
-        if (request.originalUrl === '/oficial')
-            return response.render('index.ejs', { oficial });
-        if (request.originalUrl === '/vestuario')
-            return response.render('index.ejs', { vestuario });
-        if (request.originalUrl === '/sedex')
-            return response.render('index.ejs', { sedex });
+        switch (request.originalUrl) {
+            case '/valepostal':
+                return response.render('index.ejs', { valepostal });
+                break;
+            case '/advogado':
+                return response.render('index.ejs', { advogado });
+                break;
+            case '/oficial':
+                return response.render('index.ejs', { oficial });
+                break;
+            case '/vestuario':
+                return response.render('index.ejs', { vestuario });
+                break;
+            case '/sedex':
+                return response.render('index.ejs', { sedex });
+                break;
+            case '/':
+                return response.render('index.ejs', { home });
+                break;
+            default:
+                return response.render('index.ejs');
+                break;
+        }
 
         return response.render('index.ejs');
     }

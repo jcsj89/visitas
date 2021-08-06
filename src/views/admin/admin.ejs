@@ -8,15 +8,23 @@
 <body>
     <%- include('../base/header'); %>
         <div class="container">
-            <div class="row mb-5 mt-2">
-                
+            <div class="row border justify-content-center align-items-center ">
+                <div class="col-auto col-sm-10  text-center">
+                    <h1 class="p-0 m-0">ADMIN PAGE</h1>
+                </div>
+                <div class="col align-middle text-end">
+                    <a href="/user/logout">logout</a>
+                </div>
+            </div>
+            <div class="row mb-5 pb-5 mt-2">
+
                 <div class="col col-sm-auto ">
                     <%- include('admmenu') %>
                 </div>
 
                 <div class="col border">
                     <!--CONTENT-->
-                    <h1>ADMIN PAGE</h1>
+
                     <!--  SINGLE FILE -->
                     <form action="/user/admin/upload" enctype="multipart/form-data" method="POST">
                         <input type="file" name="file" />
@@ -26,11 +34,11 @@
             </div>
 
             <!--END CONTENT-->
-            <a href="/user/logout">logout</a>
+
         </div>
 
         <%- include('../base/footer'); %>
-            <!--FOOTER-->
+        <!--FOOTER-->
 </body>
 
 </html>

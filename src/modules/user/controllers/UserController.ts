@@ -152,6 +152,7 @@ export default class UserController {
         const changes: IChanges = { update: 0, save: 0, del: 0 };
 
         //if no file uploaded
+        //05.08.21 - casa
         if (!request.file) {
             ///continuar aqui
             const message = 'nenhum upload';
@@ -242,7 +243,7 @@ function delFiles() {
 
     for (const key of files) {
         if (fs.statSync('uploads/' + key)) {
-            console.log('deletado:', key);
+            console.log('user controller:', 'deletado:', key);
             fs.unlinkSync('uploads/' + key);
         }
     }

@@ -35,8 +35,10 @@
         <%- include('pages/sedex'); %>
     <% } %>
 
-
-    <%- include('pages/roldevisitas');%>
+    <% if (locals.home) { %>
+        <%- include('pages/roldevisitas'); %>
+    <% } %>
+    
 
 </div>
 
