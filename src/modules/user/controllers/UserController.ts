@@ -151,6 +151,13 @@ export default class UserController {
         console.log('controler', outputPath);
         const changes: IChanges = { update: 0, save: 0, del: 0 };
 
+        //if no file uploaded
+        if (!request.file) {
+            ///continuar aqui
+            const message = 'nenhum upload';
+            return response.render('admin/admin', { message });
+        }
+
         //transforma excel em json
         //you miss a input file
         await assyncToJson(inputPath, outputPath);
