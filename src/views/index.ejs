@@ -15,16 +15,9 @@
         <%- include('consulta'); %>
     <% } %>
 
+    <!-- ROL DE VISITAS -->
     <% if (locals.valepostal) { %>
         <%- include('pages/valepostal'); %>
-    <% } %>
-
-    <% if (locals.advogado) { %>
-        <%- include('pages/advogado'); %>
-    <% } %>
-
-    <% if (locals.oficial) { %>
-        <%- include('pages/oficial'); %>
     <% } %>
 
     <% if (locals.vestuario) { %>
@@ -35,10 +28,41 @@
         <%- include('pages/sedex'); %>
     <% } %>
 
+    <% if (locals.auxreclusao) { %>
+        <%- include('pages/auxreclusao'); %>
+    <% } %>
+
+    <% if (locals.mascara) { %>
+        <%- include('pages/mascara'); %>
+    <% } %>
+
+    <!-- ADVOGADOS -->
+    <% if (locals.advogado) { %>
+        <%- include('pages/advogado'); %>
+    <% } %>
+
+    <% if (locals.advatendimento) { %>
+        <%- include('pages/advatendimento'); %>
+    <% } %>
+
+    <% if (locals.advtrabalhoeducacao) { %>
+        <%- include('pages/advtrabalhoeducacao'); %>
+    <% } %>
+
+    <% if (locals.advpermcarceraria) { %>
+        <%- include('pages/advpermcarceraria'); %>
+    <% } %>
+
+    <!-- OFICIAL -->
+    <% if (locals.oficial) { %>
+        <%- include('pages/oficial'); %>
+    <% } %>
+
+    <!-- HOME -->
     <% if (locals.home) { %>
         <%- include('pages/roldevisitas'); %>
     <% } %>
-    
+
 
 </div>
 

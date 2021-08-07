@@ -8,12 +8,20 @@ export default class RolVisitasController {
     ): Promise<Response | void> {
         //pages names
         const home = '/';
+        // rol de visitas
         const valepostal = 'valepostal';
-        const advogado = 'advogado';
-        const oficial = 'oficial';
         const vestuario = 'vestuario';
         const sedex = 'sedex';
+        const mascara = 'mascara';
 
+        // advogados
+        const advogado = 'advogado';
+        const advatendimento = 'advatendimento';
+        const auxreclusao = 'auxreclusao';
+        const advtrabalhoeducacao = 'advtrabalhoeducacao';
+        const advpermcarceraria = 'advpermcarceraria';
+
+        const oficial = 'oficial';
         //delete after
         console.log(request.session);
         console.log(request.sessionID);
@@ -25,28 +33,28 @@ export default class RolVisitasController {
         switch (request.originalUrl) {
             case '/valepostal':
                 return response.render('index.ejs', { valepostal });
-                break;
             case '/advogado':
                 return response.render('index.ejs', { advogado });
-                break;
             case '/oficial':
                 return response.render('index.ejs', { oficial });
-                break;
             case '/vestuario':
                 return response.render('index.ejs', { vestuario });
-                break;
             case '/sedex':
                 return response.render('index.ejs', { sedex });
-                break;
-            case '/':
-                return response.render('index.ejs', { home });
-                break;
-            default:
-                return response.render('index.ejs');
-                break;
-        }
+            case '/auxreclusao':
+                return response.render('index.ejs', { auxreclusao });
+            case '/mascara':
+                return response.render('index.ejs', { mascara });
+            case '/advatendimento':
+                return response.render('index.ejs', { advatendimento });
+            case '/advtrabalhoeducacao':
+                return response.render('index.ejs', { advtrabalhoeducacao });
+            case '/advpermcarceraria':
+                return response.render('index.ejs', { advpermcarceraria });
 
-        return response.render('index.ejs');
+            default:
+                return response.render('index.ejs', { home });
+        }
     }
 
     public async create(
