@@ -13,6 +13,7 @@ export default class RolVisitasController {
         const vestuario = 'vestuario';
         const sedex = 'sedex';
         const mascara = 'mascara';
+        const visitapresencial = 'visitapresencial';
 
         // advogados
         const advogado = 'advogado';
@@ -51,6 +52,8 @@ export default class RolVisitasController {
                 return response.render('index.ejs', { advtrabalhoeducacao });
             case '/advpermcarceraria':
                 return response.render('index.ejs', { advpermcarceraria });
+            case '/visitapresencial':
+                return response.render('index.ejs', { visitapresencial });
 
             default:
                 return response.render('index.ejs', { home });
