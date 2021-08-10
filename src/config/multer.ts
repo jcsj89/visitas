@@ -22,13 +22,12 @@ export const upload = multer({
                 file.mimetype ===
                     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             ) {
-                console.log('multer upload:', cb);
                 cb(null, true);
             } else {
                 return cb(new Error('Só arquivos .xlsx'));
             }
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     },
 });

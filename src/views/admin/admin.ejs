@@ -35,25 +35,46 @@
                         </div>
                         <div class="col border m-2 p-3 bg-primary bg-gradient">
                             <h3 class="text-white">CONSULTAS</h3>
-                            <h3><span class="badge bg-dark">444</span></h3>
+                            <h3><span class="badge bg-dark"><%=consultado[0]['sum']%></span></h3>
                         </div>
                     </div>
 
-                    <% if(locals.messages.length > 0) { %>
+                    <% if(locals.delmessage.length > 0) { %>
                         <div class="row">
                             <div class="col">
                                 <div class="alert alert-warning">
-                                    <%= messages%>
+                                    <%= delmessage%>
                                 </div>
                             </div>
                         </div>
                     <% } %>
 
                     <!--  SINGLE FILE -->
-                    <form action="/user/admin/upload" enctype="multipart/form-data" method="POST">
-                        <input type="file" name="file" />
-                        <input type="submit" value="Upload a file" />
-                    </form>
+                    <div class="row border-top ">
+                        <div class="col mt-3">
+                            <h2>Upload</h2>
+                            <h4>Selecione o arquivo excel a ser carregado</h4>
+                            <p>Apenas com extensão: '.xlxs'</p>
+                        </div>
+                        <div class="col-12 py-3">
+                            <form action="/user/admin/upload" enctype="multipart/form-data" method="POST">
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" name="file" />
+                                </div>
+                                <input class="btn btn-primary" type="submit" value="Carregar" />
+                            </form>
+                        </div>
+                    </div>
+
+                    <% if(locals.uploadmessage.length > 0) {%>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <div class="alert alert-success">
+                                    <%=uploadmessage%>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
                 </div>
             </div>
 

@@ -166,10 +166,19 @@ export default class UserController {
             .count('VIS_BLOQUEADO')
             .where('VIS_BLOQUEADO', 'FALTA ENTREGAR DOCUMENTOS');
 
-        //consome message { rol controller: delete }
-        const messages = await request.consumeFlash('deleted');
+        const consultado = await knex('consult').sum('quantidade');
 
-        return response.render('admin/admin', { ativos, pendentes, messages });
+        //consome message
+        const delmessage = await request.consumeFlash('deleted');
+        const uploadmessage = await request.consumeFlash('upload');
+
+        return response.render('admin/admin', {
+            ativos,
+            pendentes,
+            consultado,
+            delmessage,
+            uploadmessage,
+        });
     }
 
     public async upload(
@@ -223,6 +232,9 @@ export default class UserController {
             }
         }
         console.log(changes);
+
+        //success message
+        await request.flash('upload', 'Arquivo carregado com sucesso');
 
         //deleta todos arquivos da pasta uploads apos o uso
         delFiles();
