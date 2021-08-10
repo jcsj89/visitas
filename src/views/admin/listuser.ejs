@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../base/head'); %>
+</head>
+
+<body>
+    <%- include('../base/header'); %>
+        <div class="container">
+            <div class="row border justify-content-center align-items-center ">
+                <div class="col">
+                    <span class=""><%= user %> </span>
+                </div>
+                <div class="col align-middle text-end p-0">
+                    <a class="btn btn-sm btn-danger " href="/user/logout" role="button">logout</a>
+                </div>
+            </div>
+            <div class="row mb-5 pb-5 mt-2">
+
+                <div class="col-12 col-sm-auto ">
+                    <%- include('admmenu') %>
+                </div>
+
+                <div class="col border">
+                    <!--CONTENT-->
+                    <% if(locals.messages.length > 0) { %>
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-success" role="alert">
+                                    <%= messages%>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+
+                            <div class="row p-3">
+                                <div class="col-12">
+                                    <h4 class="mb-5">Usuários Cadastrados</h4>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table table-secondary table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>e-mail</th>
+                                                <th>delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(var i=0; i < users.length; i++) {%>
+                                                <tr>
+                                                    <td>
+                                                        <%= i+1%>
+                                                    </td>
+                                                    <th>
+                                                        <%= users[i]['email']%>
+                                                    </th>
+                                                    <td>
+                                                        <a onclick="return confirm('Tem certeza?')"
+                                                            href="/user/delete/<%= users[i]['id'] %>">
+                                                            <span class="text-danger material-icons-outlined">
+                                                                delete
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                </div>
+            </div>
+
+            <!--END CONTENT-->
+
+        </div>
+
+        <%- include('../base/footer'); %>
+            <!--FOOTER-->
+</body>
+
+</html>

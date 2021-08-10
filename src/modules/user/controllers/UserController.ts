@@ -69,7 +69,13 @@ export default class UserController {
     ): Promise<Response | void> {
         const users = await knex.select().table('users');
 
-        return response.json(users);
+        //consome a flash message, como nao vai redirecionar
+        const messages = await request.consumeFlash('info');
+
+        //inject user id
+        response.locals.user = request.session.user;
+
+        return response.render('admin/listuser', { users, messages });
     }
 
     public async create(
@@ -107,7 +113,22 @@ export default class UserController {
 
         await knex('users').insert(user);
 
-        return response.json(user);
+        //seta a flash message
+        await request.flash('info', `Usuário Criado: ${user.id}`);
+
+        return response.redirect('/user/create');
+    }
+    public async newUser(
+        request: Request,
+        response: Response,
+    ): Promise<Response | void> {
+        //consome a flash message, como nao vai redirecionar
+        const messages = await request.consumeFlash('info');
+
+        //inject user id
+        response.locals.user = request.session.user;
+
+        return response.render('admin/newuser', { messages });
     }
 
     public async delete(
@@ -115,11 +136,12 @@ export default class UserController {
         response: Response,
     ): Promise<Response | void> {
         const { id } = request.params;
-        const user = await knex('users').where('id', id).del();
+        await knex('users').where('id', id).del();
 
-        return response.json({
-            message: 'User deleted',
-        });
+        //seta a flash message
+        await request.flash('info', `Usuário Deletado: ${id}`);
+
+        return response.redirect('/user/list');
     }
 
     public async logout(
@@ -135,9 +157,18 @@ export default class UserController {
         request: Request,
         response: Response,
     ): Promise<Response | void> {
-        console.log(request.session);
-        console.log(request.sessionID);
-        return response.render('admin/admin');
+        console.log('admin');
+        const ativos = await knex('visitors')
+            .count('VIS_BLOQUEADO')
+            .where('VIS_BLOQUEADO', 'ATIVO(A)');
+
+        const pendentes = await knex('visitors')
+            .count('VIS_BLOQUEADO')
+            .where('VIS_BLOQUEADO', 'FALTA ENTREGAR DOCUMENTOS');
+
+        console.log(ativos, pendentes);
+
+        return response.render('admin/admin', { ativos, pendentes });
     }
 
     public async upload(
@@ -156,7 +187,7 @@ export default class UserController {
         if (!request.file) {
             ///continuar aqui
             const message = 'nenhum upload';
-            return response.render('admin/admin', { message });
+            return response.redirect('/user/admin');
         }
 
         //transforma excel em json
@@ -197,7 +228,7 @@ export default class UserController {
 
         //deleta todos arquivos da pasta uploads apos o uso
         delFiles();
-        return response.json(changes);
+        return response.redirect('/user/admin');
     }
 }
 

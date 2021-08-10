@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../base/head'); %>
+</head>
+
+<body>
+    <%- include('../base/header'); %>
+        <div class="container">
+            <div class="row border justify-content-center align-items-center ">
+                <div class="col">
+                    <span class=""><%=user%></span>
+                </div>
+                <div class="col align-middle text-end p-0">
+                    <a class="btn btn-sm btn-danger " href="/user/logout" role="button">logout</a>
+                </div>
+            </div>
+            <div class="row mb-5 pb-5 mt-2">
+
+                <div class="col-12 col-sm-auto ">
+                    <%- include('admmenu') %>
+                </div>
+
+                <div class="col border">
+                    <!--CONTENT-->
+                    <% if(locals.messages.length> 0) { %>
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-success" role="alert">
+                                    <%= messages%>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    <div class="row p-3">
+                        <div class="col-12">
+                            <h4 class="mb-5">Cadastrar Novo Usuário</h4>
+                        </div>
+                        <div class="col col-sm-5">
+
+                            <form method="POST" action="/user/create">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                                    <div id="emailHelp" class="form-text">E-mail para cadastro de novo usuário.</div>
+                                </div>
+                                <div class="">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="passwordConfirm" class="form-label">Repeat Password</label>
+                                    <input type="password" class="form-control" id="passwordConfirm" name="password_confirm">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--END CONTENT-->
+
+        </div>
+
+        <%- include('../base/footer'); %>
+            <!--FOOTER-->
+</body>
+
+</html>

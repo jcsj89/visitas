@@ -123,6 +123,7 @@ export default class RolVisitasController {
             })
             .select(
                 'VIS_NOME',
+                'VIS_CPF',
                 'DET_NOME',
                 'DET_MATRICULA',
                 'INC_RAIO',
@@ -137,8 +138,42 @@ export default class RolVisitasController {
 
         //visitor[0]['VIS_OBS'] = '';
         console.log(visitor);
+
+        //incrementar consulta na tabela
+        const consult = await knex('consult')
+            .where({
+                cpf: visitor[0]['VIS_CPF'],
+            })
+            .select('*');
+
+        if (consult.length < 1) {
+            const consultObj: IConsult = {
+                cpf: visitor[0]['VIS_CPF'],
+                quantidade: 1,
+            };
+
+            await knex('consult').insert(consultObj);
+        } else {
+            const cpf = visitor[0]['VIS_CPF'];
+            consult[0]['quantidade']++;
+            consult[0]['updated_at'] = new Date().toISOString();
+
+            await knex('consult')
+                .where({
+                    cpf,
+                })
+                .update(consult[0]);
+
+            console.log(consult);
+        }
+
         return response.render('index', { visitor });
     }
+}
+
+interface IConsult {
+    cpf: string;
+    quantidade: number;
 }
 
 //function for testing cpf validation

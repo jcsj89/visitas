@@ -9,11 +9,11 @@
     <%- include('../base/header'); %>
         <div class="container">
             <div class="row border justify-content-center align-items-center ">
-                <div class="col-auto col-sm-10  text-center">
-                    <h1 class="p-0 m-0">ADMIN PAGE</h1>
+                <div class="col">
+                    <span class="">471a4b98-9364-4298-84d1-384f59df96c1</span>
                 </div>
-                <div class="col align-middle text-end">
-                    <a href="/user/logout">logout</a>
+                <div class="col align-middle text-end p-0">
+                    <a class="btn btn-sm btn-danger " href="/user/logout" role="button">logout</a>
                 </div>
             </div>
             <div class="row mb-5 pb-5 mt-2">
@@ -24,6 +24,20 @@
 
                 <div class="col border">
                     <!--CONTENT-->
+                    <div class="row mb-5 text-center">
+                        <div class="col border m-2 p-3 bg-success bg-gradient">
+                            <h3 class="text-white">ATIVOS</h3>
+                            <h3><span class="badge bg-dark"><%=ativos[0]['count']%></span></h3>
+                        </div>
+                        <div class="col border m-2 p-3 bg-warning bg-gradient">
+                            <h3 class="text-white">PENDENTES</h3>
+                            <h3><span class="badge bg-dark"><%=pendentes[0]['count']%></span></h3>
+                        </div>
+                        <div class="col border m-2 p-3 bg-primary bg-gradient">
+                            <h3 class="text-white">CONSULTAS</h3>
+                            <h3><span class="badge bg-dark">444</span></h3>
+                        </div>
+                    </div>
 
                     <!--  SINGLE FILE -->
                     <form action="/user/admin/upload" enctype="multipart/form-data" method="POST">
@@ -38,7 +52,7 @@
         </div>
 
         <%- include('../base/footer'); %>
-        <!--FOOTER-->
+            <!--FOOTER-->
 </body>
 
 </html>
