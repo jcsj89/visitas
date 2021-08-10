@@ -27,5 +27,10 @@ rolStatusRoutes.get('/mascara', rolVisitasController.index);
 //routes to search visitor
 rolStatusRoutes.post('/visitas/status', rolVisitasController.search);
 rolStatusRoutes.get('/visitas/list', authenticated, rolVisitasController.list);
+rolStatusRoutes.get(
+    '/visitas/reset',
+    authenticated,
+    rolVisitasController.delete,
+);
 
 export default rolStatusRoutes;

@@ -39,6 +39,16 @@
                         </div>
                     </div>
 
+                    <% if(locals.messages.length > 0) { %>
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-warning">
+                                    <%= messages%>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+
                     <!--  SINGLE FILE -->
                     <form action="/user/admin/upload" enctype="multipart/form-data" method="POST">
                         <input type="file" name="file" />

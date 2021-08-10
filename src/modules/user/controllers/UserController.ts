@@ -166,9 +166,10 @@ export default class UserController {
             .count('VIS_BLOQUEADO')
             .where('VIS_BLOQUEADO', 'FALTA ENTREGAR DOCUMENTOS');
 
-        console.log(ativos, pendentes);
+        //consome message { rol controller: delete }
+        const messages = await request.consumeFlash('deleted');
 
-        return response.render('admin/admin', { ativos, pendentes });
+        return response.render('admin/admin', { ativos, pendentes, messages });
     }
 
     public async upload(
@@ -183,10 +184,7 @@ export default class UserController {
         const changes: IChanges = { update: 0, save: 0, del: 0 };
 
         //if no file uploaded
-        //05.08.21 - casa
         if (!request.file) {
-            ///continuar aqui
-            const message = 'nenhum upload';
             return response.redirect('/user/admin');
         }
 
@@ -275,7 +273,7 @@ function delFiles() {
     for (const key of files) {
         if (fs.statSync('uploads/' + key)) {
             console.log('user controller:', 'deletado:', key);
-            fs.unlinkSync('uploads/' + key);
+            if (key !== 'fixo.txt') fs.unlinkSync('uploads/' + key);
         }
     }
 }

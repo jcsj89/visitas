@@ -11,7 +11,7 @@
     "prod": "npm run build && npm run knex:prod && npm run copy && node -r tsconfig-paths/register dist/server.js",
     "build": "npx tsc",
     "copy": "cp -r src/views dist/",
-    "knex:migrate": "npx knex --knexfile src/config/knexfile.ts migrate:latest",
+    "knex:migrate": "npx knex --knexfile src/config/knexfile.ts migrate:latest ",
     "knex:prod": "npx knex --knexfile dist/config/knexfile.js migrate:latest",
     "knex:seeds": "knex --knexfile knexfile.ts seed:run"
   },
@@ -28,7 +28,7 @@
     "express-session": "^1.17.2",
     "express-session-sqlite": "^2.0.10",
     "helmet": "^4.6.0",
-    "knex": "^0.95.7",
+    "knex": "^0.21.21",
     "multer": "^1.4.2",
     "pg": "^8.7.1",
     "sqlite3": "^5.0.2",
@@ -41,6 +41,7 @@
     "@types/ejs": "^3.0.7",
     "@types/express": "^4.17.13",
     "@types/express-session": "^1.17.4",
+    "@types/knex": "^0.16.1",
     "@types/multer": "^1.4.7",
     "@types/node": "^16.3.3",
     "@types/pg": "^8.6.1",
@@ -51,6 +52,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.2.0",
     "prettier": "^2.3.2",
+    "ts-node": "^10.2.0",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"

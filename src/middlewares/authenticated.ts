@@ -9,9 +9,7 @@ function authenticated(
         !request.session.user ||
         request.session.authType !== process.env.SESSION_AUTHTYPE
     ) {
-        return response.status(401).json({
-            message: 'USER NOT AUTHENTICATED',
-        });
+        return response.redirect('/user');
     }
     next();
 }

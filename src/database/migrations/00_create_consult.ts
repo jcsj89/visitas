@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-console.log('');
+import Knex = require('knex');
+
 export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('consult', table => {
         table.uuid('id').defaultTo(knex.raw('gen_random_uuid()'));

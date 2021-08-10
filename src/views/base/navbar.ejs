@@ -44,7 +44,7 @@
                         <li>
                             <a class="dropdown-item" href="/sedex">
                                 <i class="color-i4 align-middle material-icons-outlined">format_list_bulleted</i>
-                                Lista de Sedex
+                                Lista de Sedex (Jumbo)
                             </a>
                         </li>
                         <li>
@@ -153,7 +153,7 @@
 <% if (!locals.visitor) { %>
     <div class="row justify-content-center align-items-center m-0 p-0">
         <div class="col text-center mt-2 p-0">
-            <span class="font-size-07 text-secondary">Consultar Cadastro do Rol de Visitas</span>
+            <span class="font-size-07 text-danger">Consultar Cadastro do Rol de Visitas</span>
         </div>
     </div>
     <% } %>
@@ -172,10 +172,10 @@
         </div>
     </form>
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-auto">
             <% if (locals.messages) { %>
-                <h6 class="text-center">
-                    <span class="text-center badge bg-warning"><%= messages %></span>
+                <h6 class="text-center alert alert-warning">
+                    <span class="text-center text-dark"><%= messages %></span>
                 </h6>
                 <% } %>
         </div>

@@ -60,11 +60,17 @@ export default class RolVisitasController {
         }
     }
 
-    public async create(
+    public async delete(
         request: Request,
         response: Response,
     ): Promise<Response | void> {
-        return response.json('create visitor controller');
+        const deleted = await knex('visitors').del();
+
+        if (deleted > 0) {
+            await request.flash('deleted', 'Tabela Visitantes Zerada.');
+        }
+
+        return response.redirect('/user/admin');
     }
 
     public async list(
@@ -133,7 +139,15 @@ export default class RolVisitasController {
             );
 
         if (visitor.length < 1) {
-            return response.json({ msg: 'CPF nao encontrado.' });
+            //seta a flash message
+            await request.flash(
+                'info',
+                'Caso você tenha enviado a documentação aguarde prazo de até 10 dias úteis.',
+            );
+            //consome a flash message, como nao vai redirecionar
+            const messages = await request.consumeFlash('info');
+
+            return response.render('index', { messages });
         }
 
         //visitor[0]['VIS_OBS'] = '';

@@ -1,7 +1,10 @@
-import dotenv from 'dotenv';
-import { resolve } from 'path';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const dotenv = require('dotenv');
+
 dotenv.config({
-    path: resolve(__dirname, '..', '..', '.env'),
+    path: path.resolve(__dirname, '..', '..', '.env'),
 });
 
 module.exports = {
@@ -11,7 +14,7 @@ module.exports = {
             connectionString: process.env.DATABASE_URL,
         },
         migrations: {
-            directory: resolve(__dirname, '..', 'database', 'migrations'),
+            directory: path.resolve(__dirname, '..', 'database', 'migrations'),
         },
         useNullAsDefault: true,
     },
@@ -22,7 +25,7 @@ module.exports = {
             ssl: { rejectUnauthorized: false },
         },
         migrations: {
-            directory: resolve(__dirname, '..', 'database', 'migrations'),
+            directory: path.resolve(__dirname, '..', 'database', 'migrations'),
         },
         useNullAsDefault: true,
         pool: {

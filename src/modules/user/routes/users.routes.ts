@@ -12,7 +12,7 @@ import { authenticated } from '../../../middlewares/authenticated';
 usersRoutes.get('/', userControler.index); // render login page
 usersRoutes.post('/login', userControler.login); //faz login com email/pass
 usersRoutes.get('/create', authenticated, userControler.newUser);
-usersRoutes.post('/create', authenticated, userControler.create); //quando for em producao colocar authenticated
+usersRoutes.post('/create', userControler.create); //quando for em producao colocar authenticated
 usersRoutes.get('/list', authenticated, userControler.list);
 usersRoutes.get('/delete/:id', authenticated, userControler.delete);
 usersRoutes.get('/logout', userControler.logout);
