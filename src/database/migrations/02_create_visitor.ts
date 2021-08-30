@@ -1,0 +1,11 @@
+import Knex = require('knex');
+
+export async function up(knex: Knex): Promise<void> {
+    return knex.schema.alterTable('visitors', table => {
+        table.string('VIS_OBS_DISPONIVEL', 2550).nullable();
+    });
+}
+
+export async function down(knex: Knex): Promise<void> {
+    return knex.schema.dropTable('visitors');
+}

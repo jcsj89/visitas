@@ -135,7 +135,7 @@ export default class RolVisitasController {
                 'INC_RAIO',
                 'INC_CELA',
                 'VIS_BLOQUEADO',
-                'VIS_OBS',
+                'VIS_OBS_DISPONIVEL',
             );
 
         if (visitor.length < 1) {
@@ -152,6 +152,9 @@ export default class RolVisitasController {
 
         //visitor[0]['VIS_OBS'] = '';
         console.log(visitor);
+
+        // FAZ A ABREVIAÇÃO DO NOME DA VISITA
+        visitor[0]['VIS_NOME'] = abreviaNome(visitor[0]['VIS_NOME']);
 
         //incrementar consulta na tabela
         const consult = await knex('consult')
@@ -221,4 +224,17 @@ function testaCPF(strCPF: string): boolean {
     if (Resto == 10 || Resto == 11) Resto = 0;
     if (Resto != parseInt(strCPF.substring(10, 11))) return false;
     return true;
+}
+
+function abreviaNome(nome: string): string {
+    const arrayNome = nome.split(' ');
+    let nomeAbreviado = arrayNome[0];
+
+    for (let index = 0; index < arrayNome.length; index++) {
+        if (index !== 0) {
+            nomeAbreviado += ' ' + arrayNome[index][0] + '.';
+        }
+    }
+
+    return nomeAbreviado;
 }
